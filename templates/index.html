@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title> Weather Predictor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1> Weather Predictor</h1>
+    <form method="post" action="/predict">
+      {% for feat in features %}
+        <div class="field">
+          <label for="{{ feat }}">{{ feat | capitalize }}</label>
+          <input type="number" step="any" name="{{ feat }}" required>
+        </div>
+      {% endfor %}
+      <button type="submit">Predict</button>
+    </form>
+
+    {% if result %}
+      <div class="result">{{ result }}</div>
+    {% endif %}
+  </div>
+</body>
+</html>
